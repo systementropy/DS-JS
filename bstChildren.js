@@ -1,8 +1,6 @@
 class Node{
 	constructor(data){
 		this.data = data;
-		this.childrenCount = 0;
-		this.BF = 0;
 		this.left = null;
 		this.right = null;
 	}
@@ -17,7 +15,7 @@ class BinarySearchTree{
 	}
 	insert(data){
 		if(this.root!==null){
-			console.log(this.root.data, this.root.BF,this.root.childrenCount)
+			// console.log(this.root.data, this.root.BF,this.root.childrenCount)
 		}
 		let newNode = new Node(data);
 		if(this.root === null){
@@ -29,20 +27,14 @@ class BinarySearchTree{
 	insertNode(node, newNode){
 		node.childrenCount +=1;
 		if(newNode.data < node.data){
-			node.BF += 1;
 			if(node.left == null){
-				console.log(node.data, node.BF,node.childrenCount)
 				node.left = newNode;
-				// newNode.parent = node;
 			}else{
 				this.insertNode(node.left, newNode);
 			}
 		}else{
-			node.BF -= 1;
 			if(node.right == null){
-				console.log(node.data, node.BF,node.childrenCount)
 				node.right = newNode;
-				// newNode.parent = node;
 			}else{
 				this.insertNode(node.right, newNode);
 			}
@@ -76,7 +68,6 @@ class BinarySearchTree{
 	inorder(node){
 		if(node !== null){
 			this.inorder(node.left)
-			// process.stdout.write(` ${node.data} ${node.childrenCount}`)
 			console.log(` ${node.data} ${node.childrenCount}`)
 			this.inorder(node.right)
 		}
@@ -84,7 +75,7 @@ class BinarySearchTree{
 
 	preorder(node){
 		if(node !== null){
-			process.stdout.write(` ${node.data} `)
+			console.log(` ${node.data} `)
 			this.preorder(node.left)
 			this.preorder(node.right)
 		}
@@ -94,7 +85,7 @@ class BinarySearchTree{
 		if(node !== null){
 			this.postorder(node.left)
 			this.postorder(node.right)
-			process.stdout.write(` ${node.data} `)
+			console.log(` ${node.data} `)
 		}
 	}
 
@@ -110,7 +101,6 @@ class BinarySearchTree{
 		if(node.right !== null){
 			return this.findMaxNode(node.right)
 		}else{
-			console.log(node.data)
 			return node;
 		}
 	}
@@ -119,7 +109,6 @@ class BinarySearchTree{
 		this.root = this.removeNode(this.root, data);
 	}
 	removeNode(node, removeVal){
-		console.log(node.data);
 		if(node === null){														// If root is empty
 			return null;
 		}else if(removeVal < node.data){										// If value is less than node's data
@@ -129,7 +118,6 @@ class BinarySearchTree{
 			node.right = this.removeNode(node.right, removeVal);						
 			return node
 		}else{																	//  ===== Delete this node =====
-			console.log(node);
 			if(node.left === null && node.right === null){ 						// If node has no children, delete node and return
 				node = null;
 				return node;
@@ -146,6 +134,28 @@ class BinarySearchTree{
 			node.data = minInRightChild.data;
 			node.right = this.removeNode(node.right, minInRightChild.data);
 			return node;
+		}
+	}
+	getBalanceFactor(node){
+		let leftHeight = this.getHeight(node.left);
+		let rightHeight = this.getHeight(node.right);
+		return leftHeight-rightHeight
+	}
+	getHeight(node){
+		let height = -1;
+		if(node === null){
+			height = -1;
+		}else{
+			height = Math.max(this.getHeight(node.left), this.getHeight(node.right)) +1;
+		}
+		return height;
+	}
+	inorderBF(node){
+		if(node !== null){
+			this.inorderBF(node.left)
+			console.log(` ${node.data}`);
+			console.log(this.getBalanceFactor(node));
+			this.inorderBF(node.right)
 		}
 	}
 }
@@ -187,7 +197,7 @@ let root = BST.getRootNode();
 // root = BST.getRootNode();
 // console.log(JSON.stringify(root))
 // BST.inorder(root)
+// console.log(BST.getRootNode().data);
 // BST.delete(10)
-// BST.inorder(root)
-
-BST.inorder(root)
+// BST.delete(37)
+BST.inorderBF(root)
