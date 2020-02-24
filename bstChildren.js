@@ -15,7 +15,6 @@ class BinarySearchTree{
 	}
 	insert(data){
 		if(this.root!==null){
-			// console.log(this.root.data, this.root.BF,this.root.childrenCount)
 		}
 		let newNode = new Node(data);
 		if(this.root === null){
@@ -25,7 +24,6 @@ class BinarySearchTree{
 		}
 	}
 	insertNode(node, newNode){
-		node.childrenCount +=1;
 		if(newNode.data < node.data){
 			if(node.left == null){
 				node.left = newNode;
@@ -68,7 +66,6 @@ class BinarySearchTree{
 	inorder(node){
 		if(node !== null){
 			this.inorder(node.left)
-			console.log(` ${node.data} ${node.childrenCount}`)
 			this.inorder(node.right)
 		}
 	}
@@ -158,6 +155,26 @@ class BinarySearchTree{
 			this.inorderBF(node.right)
 		}
 	}
+	rotateLL(node){
+		let temp = node.left;
+		node.left = temp.right;
+		temp.right = node;
+		return temp;
+	}
+	rotateLR(node){
+		node.left = this.rotateRR(node.left);
+		return this.rotateLL(node);
+	}
+	rotateRR(node){
+		let temp = node.right;
+		node.right = temp.left;
+		temp.left = node;
+		return temp;
+	}
+	rotateRL(node){
+		node.right = this.rotateLL(node.right);
+		return this.rotateRR(node)
+	}
 }
 var BST = new BinarySearchTree();
 const arrNum = [37,35,33,42,19,27,44,29,20,73,34,64,14,16,10,8,7,9,3,2,4,1,62,83,18,53,17,95,86,47,69,25,28,0,99];
@@ -166,38 +183,6 @@ for (let i = 0; i < arrNum.length; i++) {
 }
 let root = BST.getRootNode();
 // console.log(JSON.stringify(BST))
-// let root = BST.getRootNode();
-// let k
-// BST.search(42, root, function(val){
-// 	k = val
-// });
-// console.log(k)
-// BST.search(67, root, function(val){
-// 	k = val
-// });
-// console.log(k)
-// k = BST.searchReturn(42, root)
-// console.log(k)
-// k = BST.searchReturn(67, root)
-// console.log(k)
-
-// k = BST.inorder(root)
-// console.log(k)
-// k = BST.preorder(root)
-// console.log(k)
-// k = BST.postorder(root)
-// console.log(k)
-// k = BST.findMinNode(root)
-// console.log(k)
-// k = BST.findMaxNode(root)
-// console.log(k)
-// BST.inorder(root)
-// k = BST.delete(99)
-// console.log(k)
-// root = BST.getRootNode();
-// console.log(JSON.stringify(root))
-// BST.inorder(root)
-// console.log(BST.getRootNode().data);
-// BST.delete(10)
-// BST.delete(37)
-BST.inorderBF(root)
+console.log(BST.getHeight(root));
+console.log(BST.getBalanceFactor(root));
+// BST.inorderBF(root)
