@@ -175,6 +175,14 @@ class BinarySearchTree{
 		node.right = this.rotateLL(node.right);
 		return this.rotateRR(node)
 	}
+	balance(node){
+		let balanceFactor = this.getBalanceFactor(node)
+		if(balanceFactor>1){
+			
+		}else{
+			
+		}
+	}
 }
 var BST = new BinarySearchTree();
 const arrNum = [37,35,33,42,19,27,44,29,20,73,34,64,14,16,10,8,7,9,3,2,4,1,62,83,18,53,17,95,86,47,69,25,28,0,99];
