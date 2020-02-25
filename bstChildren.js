@@ -14,8 +14,6 @@ class BinarySearchTree{
 		return this.root;
 	}
 	insert(data){
-		if(this.root!==null){
-		}
 		let newNode = new Node(data);
 		if(this.root === null){
 			this.root = newNode;
@@ -24,19 +22,28 @@ class BinarySearchTree{
 		}
 	}
 	insertNode(node, newNode){
-		if(newNode.data < node.data){
-			if(node.left == null){
-				node.left = newNode;
-			}else{
-				this.insertNode(node.left, newNode);
+		if(node === null){
+			node = newNode;
+		}else if(newNode.data < node.data){
+			node.left = this.insertNode(node.left, newNode);
+			if(node.left !== null && this.getBalanceFactor(node)>1){
+				if(newNode.data > node.left.data){
+					node = this.rotateLL(node); 
+				}else{
+					node = this.rotateLR(node)
+				}
 			}
 		}else{
-			if(node.right == null){
-				node.right = newNode;
-			}else{
-				this.insertNode(node.right, newNode);
+			node.right = this.insertNode(node.right, newNode);
+			if(node.right !== null && this.getBalanceFactor(node)<1){
+				if(newNode.data < node.right.data){
+					node = this.rotateRR(node); 
+				}else{
+					node = this.rotateRL(node)
+				}
 			}
 		}
+		return node;
 	}
 	search(searchValue, node, cb){
 		if(node && node.data === searchValue){
