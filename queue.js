@@ -1,4 +1,5 @@
-class Queue {
+// use strict;
+export default class Queue {
 	constructor(){
 		this.items = [];
 	}
@@ -28,3 +29,4 @@ class Queue {
 		return str
 	}
 }
+// export default Queue;

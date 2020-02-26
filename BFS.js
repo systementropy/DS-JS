@@ -1,3 +1,4 @@
+import {Queue} from "./queue.js";
 const nodesCount = 14 										// No of nodes
 let visited = [false,false,false,false,false,false,false,false,false,false,false,false,false,false];
 const adjacencyList ={
@@ -16,36 +17,7 @@ const adjacencyList ={
 	12:[2,8],
 	13:[]
 };
-class Queue {
-	constructor(){
-		this.items = [];
-	}
-	enqueue(item){
-		this.items.push(item)
-	}
-	dequeue(item){
-		if(this.isEmpty()){
-			return "Empty"
-		}
-		return this.items.shift();
-	}
-	front(){
-		if(this.isEmpty()){
-			return "Empty::::"
-		}
-		return this.items[0];
-	}
-	isEmpty(){
-		return this.items.length === 0;
-	}
-	printQueue(){
-		let str ="";
-		for (let index = 0; index < this.items.length; index++) {
-			str += this.items[index]+'==>';
-		}
-		return str
-	}
-}
+
 let queue = new Queue();
 queue.enqueue(10); 
 queue.enqueue(20); 
