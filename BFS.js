@@ -17,26 +17,14 @@ const adjacencyList ={
 	12:[2,8],
 	13:[]
 };
-
 let queue = new Queue();
-queue.enqueue(10); 
-queue.enqueue(20); 
-queue.enqueue(30); 
-queue.enqueue(40); 
-queue.enqueue(50); 
-queue.enqueue(60); 
-console.log(queue.printQueue())
-function bfs(node){
-	if(visited[node]){
-		return;
-	}else{
-		visited[node] = true;
-		for (const neighbour of adjacencyList[node]) {
-			if(!visited[neighbour]){
-				bfs(neighbour)
-			}
-		}
-	}
+function bfs(start, destination){
+	let prev = solve(start);
+	return recontructionPath(start, destination,prev)
 }
-bfs(0);
+function solve(node){
+	queue.enqueue(node);
+	
+}
+bfs(0,1);
 console.log(visited)
