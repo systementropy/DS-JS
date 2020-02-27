@@ -1,4 +1,4 @@
-import {Queue} from "./queue.js";
+const Queue = require('./queue')
 const nodesCount = 14 										// No of nodes
 let visited = [false,false,false,false,false,false,false,false,false,false,false,false,false,false];
 const adjacencyList ={
