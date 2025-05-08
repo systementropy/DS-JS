@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        display: flex;
+        flex-wrap: wrap;
+        width: 200px;
+        height: 200px;
+        border: 1px solid red;
+      }
+      span {
+        width: 50%;
+      }
+      div span:nth-child(2n) {
+        text-align: right;
+      }
+      div span:nth-child(2n + 1) {
+        text-align: left;
+      }
+      div span:nth-child(n + 3) {
+        align-self: self-end;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="text" onkeyup="debounceFunc()" />
+    <hr />
+    <input type="text" onkeyup="throttleFunc()" />
+    <hr />
+    <div>
+      <span id="id">1</span><span id="id">2</span><span id="id">3</span
+      ><span id="id">4</span>
+    </div>
+    <script src="./debounce.js"></script>
+  </body>
+</html>

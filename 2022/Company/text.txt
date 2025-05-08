@@ -1,0 +1,15 @@
+// lazy loading
+	sqs +> 
+
+// real time
+	query is late
+		indexing => 
+
+	// diff btw read and write
+		master + slave
+
+	// sharding
+
+	// clustering
+	
+	 

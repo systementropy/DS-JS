@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		section{
+			text-align: center;
+			display: flex;
+			flex-wrap: wrap;
+		}
+		/* section>div#CL,section>div#CR{
+			width: 50%;
+		} */
+		section div{
+			display: flex;
+			flex-wrap: wrap;
+			width: 50%;
+		}
+		section div p,section p{
+			width: 100%;
+		}
+		section div div{
+			width: 50%;
+		}
+	</style>
+</head>
+<body>
+	<section id="C"></section>
+	<script src="./jquery.js"></script>
+	<script >
+		$(document).ready(function(){
+			var data = {"data":50,"childrenCount":34,"BF":16,"left":{"data":35,"childrenCount":24,"BF":18,"left":{"data":33,"childrenCount":20,"BF":18,"left":{"data":19,"childrenCount":18,"BF":8,"left":{"data":14,"childrenCount":12,"BF":6,"left":{"data":10,"childrenCount":8,"BF":8,"left":{"data":8,"childrenCount":7,"BF":5,"left":{"data":7,"childrenCount":5,"BF":5,"left":{"data":3,"childrenCount":4,"BF":2,"left":{"data":2,"childrenCount":2,"BF":2,"left":{"data":1,"childrenCount":1,"BF":1,"left":{"data":0,"childrenCount":0,"BF":0,"left":null,"right":null},"right":null},"right":null},"right":{"data":4,"childrenCount":0,"BF":0,"left":null,"right":null}},"right":null},"right":{"data":9,"childrenCount":0,"BF":0,"left":null,"right":null}},"right":null},"right":{"data":16,"childrenCount":2,"BF":-2,"left":null,"right":{"data":18,"childrenCount":1,"BF":1,"left":{"data":17,"childrenCount":0,"BF":0,"left":null,"right":null},"right":null}}},"right":{"data":27,"childrenCount":4,"BF":0,"left":{"data":20,"childrenCount":1,"BF":-1,"left":null,"right":{"data":25,"childrenCount":0,"BF":0,"left":null,"right":null}},"right":{"data":29,"childrenCount":1,"BF":1,"left":{"data":28,"childrenCount":0,"BF":0,"left":null,"right":null},"right":null}}},"right":{"data":34,"childrenCount":0,"BF":0,"left":null,"right":null}},"right":{"data":42,"childrenCount":2,"BF":-2,"left":null,"right":{"data":44,"childrenCount":1,"BF":-1,"left":null,"right":{"data":47,"childrenCount":0,"BF":0,"left":null,"right":null}}}},"right":{"data":73,"childrenCount":8,"BF":0,"left":{"data":64,"childrenCount":3,"BF":1,"left":{"data":62,"childrenCount":1,"BF":1,"left":{"data":53,"childrenCount":0,"BF":0,"left":null,"right":null},"right":null},"right":{"data":69,"childrenCount":0,"BF":0,"left":null,"right":null}},"right":{"data":83,"childrenCount":3,"BF":-3,"left":null,"right":{"data":95,"childrenCount":2,"BF":0,"left":{"data":86,"childrenCount":0,"BF":0,"left":null,"right":null},"right":null}}}};
+			function plotDivs(node,selector){
+				console.log(selector)
+				if(node !== null){
+					$('#'+selector).append("<p>"+node.data+"</p><div id="+selector+'L'+"></div><div id="+selector+'R'+"></div>")
+					plotDivs(node.left,selector+'L');
+					plotDivs(node.right,selector+'R');
+				}
+			}
+			plotDivs(data,"C")
+		});
+		
+	</script>
+	
+</body>
+</html>
