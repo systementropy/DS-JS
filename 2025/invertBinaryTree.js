@@ -35,4 +35,3 @@ const invertTree = (root) => {
 	return root
 }
 console.log(invertTree(tree));
-// console.log(tree)
